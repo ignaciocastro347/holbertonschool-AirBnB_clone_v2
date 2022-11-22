@@ -16,13 +16,6 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
 
-            if args:
-                for arg in args:
-                    if "=" in arg:
-                        pararm = arg.split("=")
-                        self.__dict__[pararm[0]] = pararm[1].replace('"', "")\
-                                                            .replace("_", " ")
-
         else:
             kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
                                                      '%Y-%m-%dT%H:%M:%S.%f')

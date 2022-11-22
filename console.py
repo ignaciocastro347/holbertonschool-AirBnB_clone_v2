@@ -127,10 +127,17 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # Nos estan pasando al menos un parametro | <name="value">
+        parameters = []
         if len(args) > 1:
             parameters = args[1:]
 
         new_instance = HBNBCommand.classes[args[0]](*parameters)
+
+        for param in parameters:
+            if "=" in param:
+                attr = param.split("=")
+                new_instance.__dict__[attr[0]] = attr[1].replace('"', "")\
+                                                        .replace("_", " ")
 
         print(new_instance.id)
         storage.save()
