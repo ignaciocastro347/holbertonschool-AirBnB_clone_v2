@@ -18,10 +18,10 @@ class BaseModel:
 
             if args:
                 for arg in args:
-                    arg = arg[0].split("=")
-                    name = arg[0]
-                    value = arg[1].replace("\"", "")
-                    self.__dict__[name] = value
+                    if "=" in arg:
+                        pararm = arg.split("=")
+                        self.__dict__[pararm[0]] = pararm[1].replace('"', "")\
+                                                            .replace("_", " ")
 
         else:
             kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
