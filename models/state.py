@@ -9,11 +9,11 @@ from models.city import City
 
 class State(BaseModel):
     """ State class """
-    __tablename__ = "states"
-
+    
     # file ? for FileStorage or db for DBStorage
     if getenv("HBNB_TYPE_STORAGE") == "db":
 
+        __tablename__ = "states"
         name = Column(String(128), nullable=False)
         cities = relationship("City", back_populates="state", cascade="all, delete")
 
@@ -22,6 +22,6 @@ class State(BaseModel):
         def cities(self):  # cities is a getter atribute
             cities_list = []
             for key, val in storage.all(City).items():
-                if key.split(".")[0] == self.id:
+                if val["state_id"] == self.id:
                     cities_list.append(val)
             return cities_list
