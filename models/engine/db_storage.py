@@ -2,7 +2,7 @@
 """ Module DBStorage """
 from os import getenv
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 class DBStorage:
@@ -50,10 +50,10 @@ class DBStorage:
             if cls not in classes:
                 raise Exception("class is not valid")
 
-            result = session.query(cls).all()
+            result = self.__session.query(cls).all()
         else:
             for c in classes:
-                result.extend(session.query(c).all())
+                result.extend(self.__session.query(c).all())
         
         # Return double of n
         def formatObject(obj):
@@ -75,8 +75,8 @@ class DBStorage:
             self.__session.delete(obj)
     
     def reload(self):
-        from models.state import State
         from models.city import City
+        from models.state import State
         from models.base_model import Base
 
         Base.metadata.create_all(self.__engine)
