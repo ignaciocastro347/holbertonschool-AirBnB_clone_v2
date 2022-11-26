@@ -1,11 +1,26 @@
 #!/usr/bin/python3
 """This module defines a class User"""
 from models.base_model import BaseModel
+from models.base_model import Base
+from os import getenv
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """This class defines a user by various attributes"""
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
+
+    # file ? for FileStorage or db for DBStorage
+    if getenv("HBNB_TYPE_STORAGE") == "db":
+        from sqlalchemy import Column, String
+        from sqlalchemy.orm import relationship
+        
+        __tablename__ = "users"
+        email = Column(String(128), nullable=False)
+        password = Column(String(128), nullable=False)
+        first_name = Column(String(128), nullable=False)
+        last_name = Column(String(128), nullable=False)
+
+    elif getenv("HBNB_TYPE_STORAGE") == "file":
+        email = ''
+        password = ''
+        first_name = ''
+        last_name = ''

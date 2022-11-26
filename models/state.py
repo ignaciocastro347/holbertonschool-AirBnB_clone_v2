@@ -17,7 +17,11 @@ class State(BaseModel, Base):
         cities = relationship("City", backref="states", cascade="all, delete")
 
     elif getenv("HBNB_TYPE_STORAGE") == "file":
-        
+        # TODO: try it with FileStorage
+        name = ""
+        cities = []
+
+        @property
         def cities(self):  # cities is a getter atribute
             from models.__init__ import storage
             from models.city import City
