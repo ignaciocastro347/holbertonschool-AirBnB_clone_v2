@@ -43,8 +43,9 @@ class DBStorage:
         from models.amenity import Amenity
         from models.review import Review
 
-        classes = [User, State, City, Amenity, Place, Review]
+        classes = [State, City]
         result = []
+        dict_of_instances = {}
 
         if cls:
             if cls not in classes:
@@ -54,12 +55,15 @@ class DBStorage:
         else:
             for c in classes:
                 result.extend(self.__session.query(c).all())
-        
-        # Return double of n
-        def formatObject(obj):
-            return {obj.to_dict()['__class__'] + '.' + obj.id: obj}
 
-        return dict(map(formatObject, result))
+        # Return double of n
+        def keys_of_obj(obj):
+            return "{}.{}".format(obj["__class__"], obj["id"])
+
+        for instance in result:
+            dict_of_instances[keys_of_obj(instance.to_dict())] = instance.to_dict()
+
+        return dict_of_instances
 
     def new(self, obj):
         """Add new obj to session"""
