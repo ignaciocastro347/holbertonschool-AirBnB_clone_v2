@@ -43,7 +43,7 @@ class DBStorage:
         from models.amenity import Amenity
         from models.review import Review
 
-        classes = [User, State, City]
+        classes = [User, State, City, Place]
         result = []
         dict_of_instances = {}
 
@@ -82,6 +82,7 @@ class DBStorage:
         from models.city import City
         from models.state import State
         from models.user import User
+        from models.user import Place
         from models.base_model import Base
 
         Base.metadata.create_all(self.__engine)
