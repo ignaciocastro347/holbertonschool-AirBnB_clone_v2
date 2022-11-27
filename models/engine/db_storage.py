@@ -82,7 +82,7 @@ class DBStorage:
         from models.city import City
         from models.state import State
         from models.user import User
-        from models.user import Place
+        from models.place import Place
         from models.base_model import Base
 
         Base.metadata.create_all(self.__engine)

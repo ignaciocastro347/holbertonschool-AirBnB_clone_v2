@@ -2,6 +2,7 @@
 """ City Module for HBNB project """
 from models.base_model import BaseModel
 from models.base_model import Base
+from os import getenv
 
 
 class City(BaseModel, Base):

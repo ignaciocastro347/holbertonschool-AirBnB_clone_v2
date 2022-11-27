@@ -8,7 +8,7 @@ class Place(BaseModel, Base):
     """ A place to stay """
 
     if getenv("HBNB_TYPE_STORAGE") == "db":
-        from sqlalchemy import Column, String, Integer, Float
+        from sqlalchemy import Column, String, Integer, Float, ForeignKey
 
         __tablename__ = "places"
         city_id = Column(String(60),
