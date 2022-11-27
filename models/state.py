@@ -3,23 +3,20 @@
 from models.base_model import BaseModel
 from models.base_model import Base
 from os import getenv
+from sqlalchemy import Column, String
 
 class State(BaseModel, Base):
     """ State class """
     
     # file ? for FileStorage or db for DBStorage
+    __tablename__ = "states"
+    name = Column(String(128), nullable=False)
+    
     if getenv("HBNB_TYPE_STORAGE") == "db":
-        from sqlalchemy import Column, String
         from sqlalchemy.orm import relationship
-        
-        __tablename__ = "states"
-        name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state", cascade="all, delete")
 
-    elif getenv("HBNB_TYPE_STORAGE") == "file":
-        # TODO: try it with FileStorage
-        name = ""
-        cities = []
+    else:
 
         @property
         def cities(self):
