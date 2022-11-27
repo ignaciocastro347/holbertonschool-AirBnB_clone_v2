@@ -11,7 +11,7 @@ class Review(BaseModel, Base):
         from sqlalchemy import Column, String, ForeignKey
 
         __tablename__ = "reviews"
-        description = Column(String(1024), nullable=False)
+        text = Column(String(1024), nullable=False)
         place_id = Column(String(60),
                          ForeignKey("places.id", ondelete="CASCADE"),
                          nullable=False)
