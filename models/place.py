@@ -24,7 +24,7 @@ class Place(BaseModel, Base):
         max_guest = Column(Integer, nullable=False, default=0)
         price_by_night = Column(Integer, nullable=False, default=0)
         latitude = Column(Float)
-        longitud = Column(Float)
+        longitude = Column(Float)
 
     elif getenv("HBNB_TYPE_STORAGE") == "file":
         city_id = ""
