@@ -43,7 +43,7 @@ class DBStorage:
         from models.amenity import Amenity
         from models.review import Review
 
-        classes = [User, State, City, Place]
+        classes = [User, State, City, Place, Review]
         result = []
         dict_of_instances = {}
 
