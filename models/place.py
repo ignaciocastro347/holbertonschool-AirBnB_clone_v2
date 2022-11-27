@@ -11,11 +11,11 @@ class Place(BaseModel, Base):
 
     __tablename__ = "places"
     city_id = Column(String(60),
-                        ForeignKey("cities.id", ondelete="CASCADE"),
-                        nullable=False)
+                     ForeignKey("cities.id", ondelete="CASCADE"),
+                     nullable=False)
     user_id = Column(String(60),
-                        ForeignKey("users.id", ondelete="CASCADE"),
-                        nullable=False)
+                     ForeignKey("users.id", ondelete="CASCADE"),
+                     nullable=False)
     name = Column(String(128), nullable=False)
     description = Column(String(1024))
     number_rooms = Column(Integer, nullable=False, default=0)
@@ -27,10 +27,11 @@ class Place(BaseModel, Base):
 
     if getenv("HBNB_TYPE_STORAGE") == "db":
         from sqlalchemy.orm import relationship
-        reviews = relationship("Review", backref="place", cascade="all, delete")
+        reviews = relationship("Review", backref="place",
+                               cascade="all, delete")
 
     else:
-        
+
         @property
         def reviews(self):
             from models.__init__ import storage

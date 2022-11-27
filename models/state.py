@@ -5,13 +5,14 @@ from models.base_model import Base
 from os import getenv
 from sqlalchemy import Column, String
 
+
 class State(BaseModel, Base):
     """ State class """
-    
+
     # file ? for FileStorage or db for DBStorage
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
-    
+
     if getenv("HBNB_TYPE_STORAGE") == "db":
         from sqlalchemy.orm import relationship
         cities = relationship("City", backref="state", cascade="all, delete")

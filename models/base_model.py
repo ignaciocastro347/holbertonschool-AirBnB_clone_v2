@@ -43,7 +43,7 @@ class BaseModel:
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
-    
+
     def delete(self):
         """delete the current instance from the storage"""
         from models import storage
