@@ -20,7 +20,7 @@ def hbnb():
 @app.route("/c/<text>")
 def c(text):
     return "C {}".format(escape(text.replace("_", " ")))
-    
+
 
 if __name__ == "__main__":
     app.run(port=5000, host="0.0.0.0")
