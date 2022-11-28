@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module 2-hbnb_route """
+""" Module 3-hbnb_route """
 
 from flask import Flask
 from markupsafe import escape
@@ -17,9 +17,15 @@ def hbnb():
     return "HBNB"
 
 
-@app.route("/c/<text>")
+@app.route("/c/<text>", strict_slashes=False)
 def c(text):
     return "C {}".format(escape(text.replace("_", " ")))
+
+
+@app.route("/python/", defaults={"text": "is cool"})
+@app.route("/python/<text>")
+def python(text):
+    return "Python {}".format(escape(text.replace("_", " ")))
 
 
 if __name__ == "__main__":
