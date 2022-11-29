@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-""" Script that starts a Flask web application """
+""" Module 0-hello_route """
 
 from flask import Flask
 
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def index():
-    return f'Hello HBNB!'
+    return "Hello HBNB!"
 
 
 if __name__ == '__main__':
