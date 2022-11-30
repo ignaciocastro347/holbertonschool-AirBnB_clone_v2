@@ -31,7 +31,7 @@ def python_route(text="is cool"):
 
 @app.route("number/<int:n>")
 def number_route(n):
-    return n + " is a number"
+    return "{} is a number".format(n)
 
 
 if __name__ == '__main__':
