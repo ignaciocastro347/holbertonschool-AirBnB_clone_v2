@@ -33,6 +33,12 @@ def python_route(text="is cool"):
     return "Python {}".format(text.replace("_", " "))
 
 
+@app.route("/number/<int:n>")
+def number_route(n):
+    """ number endpoint """
+    return "{} is a number".format(n)
+
+
 @app.route("/number_template/<int:n>")
 def number_template_hbnb(n):
     """ number endpoint """
