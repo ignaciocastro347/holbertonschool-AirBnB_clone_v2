@@ -10,27 +10,32 @@ app.url_map.strict_slashes = False
 
 @app.route("/")
 def index():
+    """ index endpoint """
     return "Hello HBNB!"
 
 
 @app.route("/hbnb")
 def hbnb():
+    """ hbnb endpoint"""
     return "HBNB"
 
 
 @app.route("/c/<text>")
 def c(text):
+    """ x endpoint """
     return "C {}".format(text.replace("_", " "))
 
 
 @app.route("/python")
 @app.route("/python/<text>")
 def python_route(text="is cool"):
+    """ python endpoint """
     return "Python {}".format(text.replace("_", " "))
 
 
 @app.route("number/<int:n>")
 def number_route(n):
+    """ number endpoint """
     return "{} is a number".format(n)
 
 
