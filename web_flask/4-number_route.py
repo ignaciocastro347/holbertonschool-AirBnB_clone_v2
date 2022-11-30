@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module routes"""
+""" Module routes """
 
 from flask import Flask
 
@@ -29,7 +29,7 @@ def python_route(text="is cool"):
 
 
 @app.route("number/<int:n>")
-def is_number(n):
+def number(n):
     return "{} is a number".format(n)
 
 
