@@ -3,7 +3,7 @@
 from os import getenv
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, scoped_session
-
+from models.base_model import Base
 
 class DBStorage:
     """ Class DBStorage that establishes a connection to a database """
@@ -24,8 +24,7 @@ class DBStorage:
                                       pool_pre_ping=True)
 
         if getenv("HBNB_ENV") == "test":
-            from models.base_model import Base
-            Base.metadata.drop_all()
+            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         from models.user import User
@@ -86,4 +85,4 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        self.__session.remove()
+        self.__session.close()
