@@ -44,6 +44,7 @@ def number_template_hbnb(n):
     """ number endpoint """
     return render_template("5-number.html", number=n)
 
+
 @app.route("/number_odd_or_even/<int:n>")
 def number_odd_or_even(n):
     """ number odd or even endpoint """
