@@ -1,29 +1,29 @@
 #!/usr/bin/python3
-""" Module 1-hello_route """
+""" Module routes"""
 
 from flask import Flask
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-
-@app.route("/", strict_slashes=False)
+@app.route("/")
 def index():
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
+@app.route("/hbnb")
 def hbnb():
     return "HBNB"
 
 
-@app.route("/c/<text>", strict_slashes=False)
+@app.route("/c/<text>")
 def c(text):
     return "C {}".format(text.replace("_", " "))
 
 
 @app.route("/python")
 @app.route("/python/<text>")
-def python(text="is cool"):
+def python_route(text="is cool"):
     return "Python {}".format(text.replace("_", " "))
 
 
