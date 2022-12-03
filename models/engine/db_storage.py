@@ -5,6 +5,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 
+
 class DBStorage:
     """ Class DBStorage that establishes a connection to a database """
     __engine = None
